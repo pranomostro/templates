@@ -5,7 +5,7 @@ I realized there is usually some kind of structure
 in my makefiles and man-pages, these are just some little
 files I use as templates.
 
-The makefiles have one advantage over lots of other makefile:
+The makefiles in this repo have one advantage over lots of other makefile:
 they include an uninstall option.
 
 Files
