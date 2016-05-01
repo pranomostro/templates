@@ -17,6 +17,8 @@ Files
 	has the possible targets all, clean, install and uninstall
 *	makefile_inst: also depends on config.mk, but installs the target
 	to $(PREFIX), has the targets install and uninstall
+*	makefile_mult: makefile that installs and uninstalls multiple
+	targets and their man-pages. Depends on config.mk as well.
 * template.1: man-page template file
 
 License
