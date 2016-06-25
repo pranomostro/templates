@@ -7,3 +7,5 @@ LDFLAGS=-s
 
 TARGET=
 OBJS=
+
+LIB=
