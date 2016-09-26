@@ -1,5 +1,8 @@
 include config.mk
 
+.SUFFIXES:
+.SUFFIXES: .o .c
+
 all: $(TARGET)
 
 deps/lib1/lib1.a:
@@ -14,7 +17,7 @@ p1: p1_1.o p1_2.o
 p2: p2_1.o p2_2.o $(LIB)
 	$(CC) $(LDFLAGS) -o $@ $(LIB) $<
 
-%.o: %.c
+.o.c:
 	$(CC) $(CFLAGS) -c $<
 
 clean:

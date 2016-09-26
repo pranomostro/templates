@@ -1,11 +1,16 @@
 include config.mk
 
+.SUFFIXES:
+.SUFFIXES: .o .c
+
 all: $(TARGET)
 
 $(TARGET): $(OBJS)
+
+.o:
 	$(CC) $(LDFLAGS) $(OBJS) -o $(TARGET)
 
-%.o: %.c
+.c.o:
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
