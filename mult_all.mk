@@ -3,37 +3,63 @@ include config.mk
 .SUFFIXES:
 .SUFFIXES: .o .c
 
-all: $(TARGET)
+HDR=\
+	a.h\
+	b.h
 
-deps/lib1/lib1.a:
-	make -C deps/lib1/
+LIBA=liba.a
+LIBASRC=\
+	liba/aa.c\
+	liba/ab.c
 
-deps/lib2/lib2.a:
-	make -C deps/lib2/
+LIBB=libb.a
+LIBBSRC=\
+	libb/ba.c\
+	libb/bb.c\
+	libb/bc.c
 
-p1: p1_1.o p1_2.o
-	$(CC) $(LDFLAGS) -o $@ $<
+LIB=$(LIBA) $(LIBB)
 
-p2: p2_1.o p2_2.o $(LIB)
-	$(CC) $(LDFLAGS) -o $@ $(LIB) $<
+BIN=\
+	a\
+	b\
+	c\
+	d
+
+LIBAOBJ=$(LIBASRC:.c=.o)
+LIBBOBJ=$(LIBBSRC:.c=.o)
+OBJ=$(BIN:=.o) $(LIBAOBJ) $(LIBBOBJ)
+SRC=$(BIN:=.c)
+MAN=$(BIN:=.1)
+
+all: $(BIN)
+
+$(BIN): $(LIB) $(@:=.o)
+$(OBJ): $(HDR) config.mk
+
+.o:
+	$(CC) $(LDFLAGS) -o $@ $< $(LIB)
 
 .o.c:
 	$(CC) $(CFLAGS) -c $<
 
-clean:
-	make -C deps/lib1/ clean
-	make -C deps/lib2/ clean
-	rm -rf *.o $(TARGET)
+$(LIBA): $(LIBAOBJ)
+	$(AR) rc $@ $?
+$(LIBB): $(LIBBOBJ)
+	$(AR) rc $@ $?
 
-install: $(TARGET)
+clean:
+	rm -f $(BIN) $(OBJ) $(LIB)
+
+install: all
 	mkdir -p $(PREFIX)/bin/
-	cp $(TARGET) $(PREFIX)/bin/
-	cp $(TARGET:=.1) $(PREFIX)/share/man/man1/
-	cd $(PREFIX)/bin/ && chmod 755 $(TARGET)
-	cd $(PREFIX)/share/man/man1/ && chmod 644 $(TARGET)
+	cp $(BIN) $(PREFIX)/bin/
+	cp $(MAN) $(PREFIX)/share/man/man1/
+	cd $(PREFIX)/bin/ && chmod 755 $(BIN)
+	cd $(PREFIX)/share/man/man1/ && chmod 644 $(MAN)
 
 uninstall:
-	cd $(PREFIX)/bin/ && rm -f $(TARGET)
-	cd $(PREFIX)/share/man/man1/ && rm -f $(TARGET:=.1)
+	cd $(PREFIX)/bin/ && rm -f $(BIN)
+	cd $(PREFIX)/share/man/man1/ && rm -f $(MAN)
 
 .PHONY: all clean install uninstall
