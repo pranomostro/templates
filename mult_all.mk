@@ -40,7 +40,7 @@ $(OBJ): $(HDR) config.mk
 .o:
 	$(CC) $(LDFLAGS) -o $@ $< $(LIB)
 
-.o.c:
+.c.o:
 	$(CC) $(CFLAGS) -c $<
 
 $(LIBA): $(LIBAOBJ)
