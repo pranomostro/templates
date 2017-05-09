@@ -1,8 +1,5 @@
 include config.mk
 
-.SUFFIXES:
-.SUFFIXES: .o .c
-
 HDR=\
 	a.h\
 	b.h
@@ -20,33 +17,27 @@ LIBBSRC=\
 
 LIB=$(LIBA) $(LIBB)
 
-BIN=\
-	a\
-	b\
-	c\
-	d
-
 LIBAOBJ=$(LIBASRC:.c=.o)
 LIBBOBJ=$(LIBBSRC:.c=.o)
 OBJ=$(BIN:=.o) $(LIBAOBJ) $(LIBBOBJ)
-SRC=$(BIN:=.c)
-MAN=$(BIN:=.1)
 
 all: $(BIN)
 
 $(BIN): $(LIB) $(@:=.o)
-$(OBJ): $(HDR) config.mk
+$(OBJ): $(HDR) $(CONF)
 
 .o:
 	$(CC) $(LDFLAGS) -o $@ $< $(LIB)
 
 .c.o:
-	$(CC) $(CFLAGS) -c $<
+	$(CC) $(CFLAGS) -o $@ -c $<
 
 $(LIBA): $(LIBAOBJ)
 	$(AR) rc $@ $?
+	$(RANLIB) $@
 $(LIBB): $(LIBBOBJ)
 	$(AR) rc $@ $?
+	$(RANLIB) $@
 
 clean:
 	rm -f $(BIN) $(OBJ) $(LIB)

@@ -7,5 +7,7 @@ RANLIB=ranlib
 CFLAGS=-Wall -Wextra -std=c89 -pedantic -O2
 LDFLAGS=-s
 
-TARGET=
-OBJ=
+BIN=
+OBJ=$(BIN:=.o)
+MAN=$(BIN:=.1)
+CONF=config.mk

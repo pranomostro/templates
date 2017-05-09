@@ -1,6 +1,18 @@
 include config.mk
 
-all: install
+all: $(BIN)
+
+$(BIN): $(OBJ)
+$(OBJ): $(CONF)
+
+.o:
+	$(CC) $(LDFLAGS) -o $@ $(OBJ)
+
+.c.o:
+	$(CC) $(CFLAGS) -c $< -o $@
+
+clean:
+	rm -rf $(BIN) $(OBJ)
 
 install: $(BIN)
 	mkdir -p $(PREFIX)/bin $(PREFIX)/share/man/man1
@@ -12,4 +24,4 @@ install: $(BIN)
 uninstall:
 	rm -f $(PREFIX)/bin/$(BIN) $(PREFIX)/share/man/man1/$(MAN)
 
-.PHONY: all install uninstall
+.PHONY: all clean install uninstall
