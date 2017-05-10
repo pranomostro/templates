@@ -1,63 +1,94 @@
-.TH PROGRAM 1
-.SH NAME
-program \- do something
+.Dd May 11, 2017
+.Dt TEMPLATE 1
+.Os
 
-.SH SYNOPSIS
-program OPTIONS
+.Sh NAME
+.Nm program ,
+.Nm template
+.Nd do something, things, you know
 
-.SH DESCRIPTION
-Very program.
-Such execution.
-Much wow.
+.Sh SYNOPSIS
+.Nm program
+.Op Fl a Ar code
+.Ar Fl u
+.Op Fl –
+.Op Ar stuff
+.Nm template
+.Op Fl b
 
-.SH OPTIONS
-.TP
-.BI -a
+.Sh DESCRIPTION
+.Nm program
+is great. Very program. Such execution. Much wow.
+.Pp
+.Nm template
+is bad. Don't use.
+
+.Sh OPTIONS
+.Nm program
+uses following options:
+.Bl -tag -width Ds
+.It Fl a Ar code
 give me some more source code
-.TP
-.BI -u
+.It Fl u
 use UTF-16 for io (just kidding)
-.TP
-.BI -—
+.It Fl —
 Use em-dashes for options
+.It Ar stuff
+blah blub
+.Ar stuff .
+.El
+.Pp
+.Nm template
+does this:
+.Bl -tag -width Ds
+.It Fl b
+narrrrrrrrrrrrrrrrr
+.El
 
-.SH EXAMPLES
-.PP
-.fi
-.RS
-$ program command
-.br
-output of teh command
-.RE
-.fi
-runs command with program. Whatever.
-.PP
-.fi
-.RS
-$ program eth0
-.RE
-.fi
-does something fancy with networking.
-.PP
-.fi
-.RS
-$ program PUBLIC_KEY
-.RE
-.fi
-finds the private key.
+.Sh FILES
+.Bl -tag -width Ds
+.It Pa ~/.profile
+The login profile. Yay.
+.El
 
-.SH STATUS
-0 on success and 1 when it prints the help message, 2 when it has fucked up.
+.Sh ENVIRONMENT
+.Bl -tag -width Ds
+.It Ev EDITOR
+The editor variable.
+.It Ev HOME
+The home and
+.It Ev USER
+the user.
+.El
 
-.SH BUGS
+.Sh EXAMPLES
+Run
+.Nm program
+with command
+.Pp
+.Dl $ program \(dqcommand\(dq
+.Dl output of teh command
+.Pp
+Do something fancy with networking
+.Pp
+.Dl $ program eth0
+.Pp
+Find the private key
+.Pp
+.Dl $ program PUBLIC_KEY
+
+.Sh EXIT STATUS
+.Ex -std
+
+.Sh BUGS
 The code probably sucks.
-.TP
+.Pp
 It does not work.
 
-.SH "SEE ALSO"
-.IR foo(1),
-.IR bar(2),
-.IR quux(3).
+.Sh SEE ALSO
+.Xr foo 1 ,
+.Xr bar 2 ,
+.Xr quux 3 .
 
-.SH AUTHOR
-pranomostro (pranomestro@gmail.com).
+.Sh AUTHORS
+.An pranomostro Aq Mt pranomestro@gmail.com
