@@ -1,0 +1,67 @@
+.Dd May 21, 2017
+.Dt TMPLT 3
+.Os
+
+.Sh NAME
+.Nm tmplt
+.Nd create a new universe
+
+.Sh SYNOPSIS
+.In universe.h
+.Ft universe
+.Fo tmplt
+.Fa constants
+.Fc
+
+.Sh DESCRIPTION
+.Fn tmplt
+gets a set of
+.Fa constants
+and creates a new
+.Ft universe
+from them. The
+.Ft universe
+will be created even if the
+.Fa constants
+will result in an unstable
+.Ft universe .
+.Fn tmplt
+uses the ΛCDM-model.
+
+.Sh RETURN VALUES
+The value returned by
+.Fn tmplt
+is a new
+.Ft universe
+created with the given constants.
+
+.Sh EXAMPLES
+Re-create our universe
+.Bd -literal -offset indent
+constants c;
+universe u;
+
+c.H0=67.3;
+c.Ωb=4.89;
+c.Ωm=31.5;
+c.τ=0.0925;
+c.As=2.215e-9;
+c.ns=0.9603;
+
+u=tmplt(c);
+.Ed
+
+.Sh ERRORS
+Given the wrong constants, the universe collapses very quickly, possibly
+leaving the RAM filled with eather black holes, strange matter or spawn
+of Azathoth. This is unfortunately unpredictable, always keep a backup
+of your current universe when creating new ones!
+
+.Sh SEE ALSO
+.Xr cosmos 3 ,
+.Xr everything 3 ,
+.Xr purge_ram 3 .
+
+.Sh STANDARDS
+.Fn tmplt
+does not conform to any standards.
