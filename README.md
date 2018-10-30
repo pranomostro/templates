@@ -29,4 +29,4 @@ look for example at the README.md and the license file.
 License
 =======
 
-MIT license, more details in ./LICENSE.
+MIT license, more details in [LICENSE](./LICENSE).
